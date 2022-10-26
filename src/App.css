@@ -1,11 +1,21 @@
 .App {
   text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
 .container {
-  margin: 20px auto;
+  /* margin: 20px auto; */
   position: relative;
-  height: 300px;
-  width: 600px;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
+}
+
+.video {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
 }

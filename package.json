@@ -1,5 +1,6 @@
 {
   "name": "mind-ar-react",
+  "homepage": "https://sam880222.github.io/mind-ar-test",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,13 +10,15 @@
     "aframe": "^1.2.0",
     "aframe-extras": "^6.1.1",
     "browserify": "^17.0.0",
-    "mind-ar": "^1.0.0",
+    "mind-ar": "1.1.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -38,5 +41,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

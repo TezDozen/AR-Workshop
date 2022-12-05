@@ -1,5 +1,5 @@
 import AFRAME from "aframe";
-import { Vector3, Euler, Quaternion, Matrix4 } from "three";
+import { Vector3, Quaternion, Matrix4 } from "three";
 
 AFRAME.registerComponent("mindar-image-target-averaging", {
   dependencies: ["mindar-image-system"],

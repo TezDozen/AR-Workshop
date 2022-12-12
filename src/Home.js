@@ -17,6 +17,7 @@ const Home = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-around",
+        alignItems: "center",
         width: "100%",
         height: "100%",
         padding: 30,
@@ -25,7 +26,15 @@ const Home = () => {
       }}
     >
       {targets.map((target) => (
-        <Link to={`ar/${target}`} key={target}>
+        <Link
+          to={`ar/${target}`}
+          key={target}
+          style={{
+            height: "25vh",
+            width: "25vh",
+            borderRadius: 10,
+          }}
+        >
           <img
             src={`/mind-ar-test/target_image/${target}.png`}
             alt={target}

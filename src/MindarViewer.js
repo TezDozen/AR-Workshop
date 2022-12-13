@@ -11,13 +11,24 @@ AFRAME.registerComponent("model-adjustment", {
       const obj = this.el.getObject3D("mesh");
       // Go over the submeshes and modify materials we want.
       obj.traverse((node) => {
-        console.log(node);
+        // console.log(node.name);
+        if (node.name.includes("particle")) {
+          node.material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        }
+        if (node.name === "Plane011") {
+          node.material = new THREE.MeshStandardMaterial({ color: 0x777777 });
+        }
         if (node.material && node.material?.name?.includes("mat")) {
+          // node.material = new THREE.MeshBasicMaterial({
+          //   color: 0xffffff,
+          //   map: node.material.map,
+          // });
           node.material.depthWrite = true;
           node.material.transparent = false;
           node.material.alphaTest = 0.5;
           node.material.alphaWrite = false;
-          // node.material.shader = "flat";
+          node.material.flatShading = true;
+          console.log(node.material);
         }
       });
     });
@@ -44,11 +55,11 @@ const MindARViewer = () => {
             src="/mind-ar-test/models/test.glb"
           ></a-asset-item>
         </a-assets>
-        {/* <a-entity light="type: ambient; color: #FFF; intensity: 100"></a-entity>
+        <a-entity light="type: ambient; color: #BBB"></a-entity>
         <a-entity
-          light="type: directional; color: #FFF; intensity: 0.6"
-          position="-0.5 1 1"
-        ></a-entity> */}
+          light="type: directional; color: #FFF; intensity: 2"
+          position="0 1 1"
+        ></a-entity>
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
         {[...Array(12).keys()].map((v) => (
           <a-entity key={v} mindar-image-target-averaging={`targetIndex: ${v}`}>

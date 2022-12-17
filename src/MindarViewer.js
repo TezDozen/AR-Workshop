@@ -1,10 +1,10 @@
-import "./mindar-image-target-averaging";
-import "./click-interaction";
-import "./sound-control";
-import "./animation-mixer";
+import "./components/mindar-image-target-averaging";
+import "./components/click-interaction";
+import "./components/sound-control";
+import "./components/animation-mixer";
 import AFRAME from "aframe";
-import * as THREE from "three";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import WelcomePanel from "./components/WelcomePanel";
 
 AFRAME.registerComponent("model-adjustment", {
   init: function () {
@@ -58,34 +58,11 @@ const MindARViewer = () => {
   return (
     <div className="container">
       {showWelcome ? (
-        <div
-          style={{
-            width: "100vw",
-            height: "100vh",
-            position: "fixed",
-            zIndex: 100,
-            backgroundColor: "#000000",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+        <WelcomePanel
           onClick={() => {
-            const soundEffect = new Audio();
-            soundEffect.autoplay = true;
-
-            // onClick of first interaction on page before I need the sounds
-            // (This is a tiny MP3 file that is silent and extremely short - retrieved from https://bigsoundbank.com and then modified)
-            soundEffect.src =
-              "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
             setShowWelcome(false);
           }}
-        >
-          <span style={{ color: "white" }}>
-            Enable sound,
-            <br /> and click to start
-          </span>
-        </div>
+        />
       ) : (
         <a-scene
           mindar-image={`imageTargetSrc: /mind-ar-test/targets.mind; maxTrack: 1;`}
@@ -115,6 +92,20 @@ const MindARViewer = () => {
               src="/mind-ar-test/sound.m4a"
               response-type="arraybuffer"
             ></a-asset-item>
+            <a-asset-item
+              id="sound_src_goat"
+              preload="auto"
+              class="a-sound"
+              src="/mind-ar-test/sounds/goat.mp3"
+              response-type="arraybuffer"
+            ></a-asset-item>
+            <a-asset-item
+              id="sound_src_dragon"
+              preload="auto"
+              class="a-sound"
+              src="/mind-ar-test/sounds/dragon.mp3"
+              response-type="arraybuffer"
+            ></a-asset-item>
           </a-assets>
           <a-entity light="type: ambient; color: #BBB"></a-entity>
           <a-entity
@@ -131,6 +122,18 @@ const MindARViewer = () => {
             id="sound"
             src="#sound_src"
             loop="true"
+            positional="false"
+          ></a-sound>
+          <a-sound
+            id="sound_goat"
+            src="#sound_src_goat"
+            loop="false"
+            positional="false"
+          ></a-sound>
+          <a-sound
+            id="sound_dragon"
+            src="#sound_src_dragon"
+            loop="false"
             positional="false"
           ></a-sound>
 

@@ -81,7 +81,7 @@ const MindARViewer = () => {
             {animals.map((v, i) => (
               <a-asset-item
                 key={v}
-                id={v}
+                id={"model_" + v}
                 src={`/mind-ar-test/models/${v}.glb`}
               ></a-asset-item>
             ))}
@@ -92,20 +92,16 @@ const MindARViewer = () => {
               src="/mind-ar-test/sound.m4a"
               response-type="arraybuffer"
             ></a-asset-item>
-            <a-asset-item
-              id="sound_src_goat"
-              preload="auto"
-              class="a-sound"
-              src="/mind-ar-test/sounds/goat.mp3"
-              response-type="arraybuffer"
-            ></a-asset-item>
-            <a-asset-item
-              id="sound_src_dragon"
-              preload="auto"
-              class="a-sound"
-              src="/mind-ar-test/sounds/dragon.mp3"
-              response-type="arraybuffer"
-            ></a-asset-item>
+            {animals.map((v, i) => (
+              <a-asset-item
+                id={"sound_src_" + v}
+                preload="auto"
+                class="a-sound"
+                key={v}
+                src={`/mind-ar-test/sounds/${v}.mp3`}
+                response-type="arraybuffer"
+              ></a-asset-item>
+            ))}
           </a-assets>
           <a-entity light="type: ambient; color: #BBB"></a-entity>
           <a-entity
@@ -116,7 +112,7 @@ const MindARViewer = () => {
             position="0 0 0"
             look-controls="enabled: false"
             cursor="fuse: false; rayOrigin: mouse;"
-            raycaster="far: 10000; objects: [data-clickable]"
+            raycaster="far: 100000; objects: [data-clickable]"
           ></a-camera>
           <a-sound
             id="sound"
@@ -125,17 +121,20 @@ const MindARViewer = () => {
             positional="false"
           ></a-sound>
           <a-sound
-            id="sound_goat"
-            src="#sound_src_goat"
+            id="sound_animal"
+            src=""
             loop="false"
             positional="false"
           ></a-sound>
-          <a-sound
-            id="sound_dragon"
-            src="#sound_src_dragon"
-            loop="false"
-            positional="false"
-          ></a-sound>
+          {/* {animals.map((v, i) => (
+            <a-sound
+              id={"sound_" + v}
+              src={"#sound_src_" + v}
+              key={v}
+              loop="false"
+              positional="false"
+            ></a-sound>
+          ))} */}
 
           {animals.map((v, i) => (
             <a-entity
@@ -147,9 +146,8 @@ const MindARViewer = () => {
                 rotation="0 0 0"
                 position="0 0 0"
                 scale="0.5 0.5 0.5"
-                src={`#${v}`}
+                src={`#model_${v}`}
                 sound-control
-                click-interaction
                 // IMPORTANT!!!
                 // If add this component without value, React will give it true instead of the default value!
                 animation-mixer="clips: Animation"
@@ -160,8 +158,8 @@ const MindARViewer = () => {
                 position="0 0 0"
                 scale="0.5 0.5 0.5"
                 src="#snow"
-                click-interaction
                 animation-mixer="clips: Animation"
+                click-interaction={`animal: ${v}`}
               ></a-gltf-model>
             </a-entity>
           ))}

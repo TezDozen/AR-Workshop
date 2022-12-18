@@ -1,27 +1,37 @@
 import { registerComponent, THREE } from "aframe";
 
 registerComponent("click-interaction", {
+  schema: {
+    animal: { type: "string" },
+  },
+
   isAnimationPlaying: false,
 
   isSoundPlaying: false,
 
   init: function () {
     const el = this.el;
+    const animal = this.data.animal;
     let component = this;
+    let soundEl = document.querySelector(`#sound_animal`);
+    let sound = soundEl.components.sound;
 
     el.parentNode.addEventListener("targetFound", (e) => {
+      soundEl.setAttribute("src", `#sound_src_${animal}`);
       el.setAttribute("data-clickable", "");
       console.log("targetFound");
     });
 
     el.parentNode.addEventListener("targetLost", () => {
       el.removeAttribute("data-clickable");
+      sound.stopSound();
+      this.isSoundPlaying = false;
       console.log("targetLost");
     });
 
-    if (el.id === "goat") {
-      this.el.addEventListener("model-loaded", (e) => {
-        let model = el.components["gltf-model"].model;
+    if (animal === "goat") {
+      document.querySelector(`#goat`).addEventListener("model-loaded", (e) => {
+        let model = e.target.components["gltf-model"].model;
         component.animations = [...model.animations];
         component.baseAnimation = component.animations.splice(0, 1);
       });
@@ -34,10 +44,6 @@ registerComponent("click-interaction", {
         return;
       }
 
-      let soundEl = document.querySelector(
-        `#sound_${el.id === "goat" ? "goat" : "dragon"}`
-      );
-      let sound = soundEl.components.sound;
       sound.playSound();
       component.isSoundPlaying = true;
 
@@ -46,17 +52,18 @@ registerComponent("click-interaction", {
         component.isSoundPlaying = false;
       });
 
-      if (el.id === "goat") {
+      if (animal === "goat") {
         component.animations.sort(() => Math.random() - 0.5);
         console.log(component.animations.slice(0, 3).map((v) => v.name));
         component.isAnimationPlaying = true;
 
-        el.setAttribute("animation-mixer__0", {
+        const modelEl = document.querySelector("#goat");
+        modelEl.setAttribute("animation-mixer__0", {
           clips: component.animations.slice(0, 3).map((v) => v.name),
           loop: "once",
         });
 
-        el.addEventListener("animation-finished", () => {
+        modelEl.addEventListener("animation-finished", () => {
           component.isAnimationPlaying = false;
         });
       }

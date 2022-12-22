@@ -44,12 +44,14 @@ registerComponent("click-interaction", {
       console.log("targetLost");
     });
 
-    if (animal === "goat") {
-      document.querySelector(`#goat`).addEventListener("model-loaded", (e) => {
-        let model = e.target.components["gltf-model"].model;
-        component.animations = [...model.animations];
-        component.baseAnimation = component.animations.splice(0, 1);
-      });
+    if (animal === "goat" || animal === "rabbit") {
+      document
+        .querySelector(`#${animal}`)
+        .addEventListener("model-loaded", (e) => {
+          let model = e.target.components["gltf-model"].model;
+          component.animations = [...model.animations];
+          component.baseAnimation = component.animations.splice(0, 1);
+        });
     }
 
     el.addEventListener("click", function (e) {
@@ -62,9 +64,17 @@ registerComponent("click-interaction", {
       sound.playSound();
       component.isSoundPlaying = true;
 
+      let animationFinishCallback = (e) => {
+        console.log("animation ended");
+        component.isAnimationPlaying = false;
+        e.target.removeEventListener(
+          "animation-finished",
+          animationFinishCallback
+        );
+      };
+
       if (animal === "goat") {
         component.animations.sort(() => Math.random() - 0.5);
-        console.log(component.animations.slice(0, 3).map((v) => v.name));
         component.isAnimationPlaying = true;
 
         const modelEl = document.querySelector("#goat");
@@ -73,9 +83,20 @@ registerComponent("click-interaction", {
           loop: "once",
         });
 
-        modelEl.addEventListener("animation-finished", () => {
-          component.isAnimationPlaying = false;
+        modelEl.addEventListener("animation-finished", animationFinishCallback);
+      }
+
+      if (animal === "rabbit") {
+        component.isAnimationPlaying = true;
+
+        const modelEl = document.querySelector("#rabbit");
+        modelEl.removeAttribute("animation-mixer__0");
+        modelEl.setAttribute("animation-mixer__0", {
+          clips: [...component.animations].map((v) => v.name),
+          loop: "once",
         });
+
+        modelEl.addEventListener("animation-finished", animationFinishCallback);
       }
     });
   },

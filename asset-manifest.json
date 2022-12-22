@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/AR-Workshop/static/css/main.2126c4a4.chunk.css",
-    "main.js": "/AR-Workshop/static/js/main.00c6457b.chunk.js",
-    "main.js.map": "/AR-Workshop/static/js/main.00c6457b.chunk.js.map",
+    "main.css": "/AR-Workshop/static/css/main.d1ddc982.chunk.css",
+    "main.js": "/AR-Workshop/static/js/main.9121f27f.chunk.js",
+    "main.js.map": "/AR-Workshop/static/js/main.9121f27f.chunk.js.map",
     "runtime-main.js": "/AR-Workshop/static/js/runtime-main.2d29e879.js",
     "runtime-main.js.map": "/AR-Workshop/static/js/runtime-main.2d29e879.js.map",
-    "static/js/2.2112490b.chunk.js": "/AR-Workshop/static/js/2.2112490b.chunk.js",
-    "static/js/2.2112490b.chunk.js.map": "/AR-Workshop/static/js/2.2112490b.chunk.js.map",
+    "static/js/2.60143a0e.chunk.js": "/AR-Workshop/static/js/2.60143a0e.chunk.js",
+    "static/js/2.60143a0e.chunk.js.map": "/AR-Workshop/static/js/2.60143a0e.chunk.js.map",
     "static/js/3.5d1df3cb.chunk.js": "/AR-Workshop/static/js/3.5d1df3cb.chunk.js",
     "static/js/3.5d1df3cb.chunk.js.map": "/AR-Workshop/static/js/3.5d1df3cb.chunk.js.map",
     "index.html": "/AR-Workshop/index.html",
-    "static/css/main.2126c4a4.chunk.css.map": "/AR-Workshop/static/css/main.2126c4a4.chunk.css.map",
-    "static/js/2.2112490b.chunk.js.LICENSE.txt": "/AR-Workshop/static/js/2.2112490b.chunk.js.LICENSE.txt"
+    "static/css/main.d1ddc982.chunk.css.map": "/AR-Workshop/static/css/main.d1ddc982.chunk.css.map",
+    "static/js/2.60143a0e.chunk.js.LICENSE.txt": "/AR-Workshop/static/js/2.60143a0e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2d29e879.js",
-    "static/js/2.2112490b.chunk.js",
-    "static/css/main.2126c4a4.chunk.css",
-    "static/js/main.00c6457b.chunk.js"
+    "static/js/2.60143a0e.chunk.js",
+    "static/css/main.d1ddc982.chunk.css",
+    "static/js/main.9121f27f.chunk.js"
   ]
 }

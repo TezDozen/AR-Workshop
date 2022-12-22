@@ -65,8 +65,8 @@ const MindARViewer = () => {
         />
       ) : (
         <a-scene
-          mindar-image={`imageTargetSrc: /mind-ar-test/targets.mind; maxTrack: 1;`}
-          //   mindar-image="imageTargetSrc: /mind-ar-test/targets.mind; autoStart: false; uiLoading: no; uiError: no; uiScanning: no;"
+          mindar-image={`imageTargetSrc: /AR-Workshop/targets.mind; maxTrack: 1;`}
+          //   mindar-image="imageTargetSrc: /AR-Workshop/targets.mind; autoStart: false; uiLoading: no; uiError: no; uiScanning: no;"
           //   embedded
           color-space="sRGB"
           renderer="colorManagement: true, physicallyCorrectLights"
@@ -76,20 +76,20 @@ const MindARViewer = () => {
           <a-assets>
             <a-asset-item
               id="snow"
-              src="/mind-ar-test/models/snow.glb"
+              src="/AR-Workshop/models/snow.glb"
             ></a-asset-item>
             {animals.map((v, i) => (
               <a-asset-item
                 key={v}
                 id={"model_" + v}
-                src={`/mind-ar-test/models/${v}.glb`}
+                src={`/AR-Workshop/models/${v}.glb`}
               ></a-asset-item>
             ))}
             <a-asset-item
               id="sound_src"
               preload="auto"
               class="a-sound"
-              src="/mind-ar-test/sound.m4a"
+              src="/AR-Workshop/sound.m4a"
               response-type="arraybuffer"
             ></a-asset-item>
             {animals.map((v, i) => (
@@ -98,7 +98,7 @@ const MindARViewer = () => {
                 preload="auto"
                 class="a-sound"
                 key={v}
-                src={`/mind-ar-test/sounds/${v}.mp3`}
+                src={`/AR-Workshop/sounds/${v}.mp3`}
                 response-type="arraybuffer"
               ></a-asset-item>
             ))}

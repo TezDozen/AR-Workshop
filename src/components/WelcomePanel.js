@@ -49,7 +49,7 @@ const WelcomePanel = ({ onClick }) => {
       </span>
       <span style={{ flexGrow: 1 }} />
       <img
-        src="/mind-ar-test/target_image/goat.png"
+        src="/AR-Workshop/target_image/goat.png"
         alt="goat"
         style={{ maxHeight: "50%", maxWidth: "90%", aspectRatio: "1" }}
       />

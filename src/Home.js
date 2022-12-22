@@ -36,7 +36,7 @@ const Home = () => {
           }}
         >
           <img
-            src={`/mind-ar-test/target_image/${target}.png`}
+            src={`/AR-Workshop/target_image/${target}.png`}
             alt={target}
             style={{
               height: "25vh",

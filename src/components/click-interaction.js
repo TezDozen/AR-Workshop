@@ -9,6 +9,8 @@ registerComponent("click-interaction", {
 
   isSoundPlaying: false,
 
+  shouldPlayHohoho: false,
+
   init: function () {
     const el = this.el;
     const animal = this.data.animal;
@@ -16,9 +18,21 @@ registerComponent("click-interaction", {
     let soundEl = document.querySelector(`#sound_animal`);
     let sound = soundEl.components.sound;
 
+    let soundEndCallback = () => {
+      console.log("sound ended");
+      component.isSoundPlaying = false;
+      soundEl.setAttribute(
+        "src",
+        `#sound_src_${component.shouldPlayHohoho ? "hohoho" : animal}`
+      );
+      component.shouldPlayHohoho = !component.shouldPlayHohoho;
+    };
+
     el.parentNode.addEventListener("targetFound", (e) => {
       soundEl.setAttribute("src", `#sound_src_${animal}`);
+      component.shouldPlayHohoho = true;
       el.setAttribute("data-clickable", "");
+      soundEl.addEventListener("sound-ended", soundEndCallback);
       console.log("targetFound");
     });
 
@@ -26,6 +40,7 @@ registerComponent("click-interaction", {
       el.removeAttribute("data-clickable");
       sound.stopSound();
       this.isSoundPlaying = false;
+      soundEl.removeEventListener("sound-ended", soundEndCallback);
       console.log("targetLost");
     });
 
@@ -46,11 +61,6 @@ registerComponent("click-interaction", {
 
       sound.playSound();
       component.isSoundPlaying = true;
-
-      soundEl.addEventListener("sound-ended", () => {
-        console.log("sound ended");
-        component.isSoundPlaying = false;
-      });
 
       if (animal === "goat") {
         component.animations.sort(() => Math.random() - 0.5);

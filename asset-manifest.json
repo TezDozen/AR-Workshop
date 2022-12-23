@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/AR-Workshop/static/css/main.d1ddc982.chunk.css",
-    "main.js": "/AR-Workshop/static/js/main.9121f27f.chunk.js",
-    "main.js.map": "/AR-Workshop/static/js/main.9121f27f.chunk.js.map",
+    "main.js": "/AR-Workshop/static/js/main.bd2b77a4.chunk.js",
+    "main.js.map": "/AR-Workshop/static/js/main.bd2b77a4.chunk.js.map",
     "runtime-main.js": "/AR-Workshop/static/js/runtime-main.2d29e879.js",
     "runtime-main.js.map": "/AR-Workshop/static/js/runtime-main.2d29e879.js.map",
     "static/js/2.60143a0e.chunk.js": "/AR-Workshop/static/js/2.60143a0e.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.2d29e879.js",
     "static/js/2.60143a0e.chunk.js",
     "static/css/main.d1ddc982.chunk.css",
-    "static/js/main.9121f27f.chunk.js"
+    "static/js/main.bd2b77a4.chunk.js"
   ]
 }

@@ -9,7 +9,7 @@ registerComponent("click-interaction", {
 
   isSoundPlaying: false,
 
-  shouldPlayHohoho: false,
+  // shouldPlayHohoho: false,
 
   init: function () {
     const el = this.el;
@@ -21,16 +21,10 @@ registerComponent("click-interaction", {
     let soundEndCallback = () => {
       console.log("sound ended");
       component.isSoundPlaying = false;
-      soundEl.setAttribute(
-        "src",
-        `#sound_src_${component.shouldPlayHohoho ? "hohoho" : animal}`
-      );
-      component.shouldPlayHohoho = !component.shouldPlayHohoho;
     };
 
     el.parentNode.addEventListener("targetFound", (e) => {
       soundEl.setAttribute("src", `#sound_src_${animal}`);
-      component.shouldPlayHohoho = true;
       el.setAttribute("data-clickable", "");
       soundEl.addEventListener("sound-ended", soundEndCallback);
       console.log("targetFound");

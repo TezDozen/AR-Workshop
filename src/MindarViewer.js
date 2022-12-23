@@ -2,40 +2,8 @@ import "./components/mindar-image-target-averaging";
 import "./components/click-interaction";
 import "./components/sound-control";
 import "./components/animation-mixer";
-import AFRAME from "aframe";
 import { useState } from "react";
 import WelcomePanel from "./components/WelcomePanel";
-
-AFRAME.registerComponent("model-adjustment", {
-  init: function () {
-    this.el.addEventListener("model-loaded", (e) => {
-      // console.log(this.el.components["gltf-model"]);
-      const obj = this.el.getObject3D("mesh");
-      // Go over the submeshes and modify materials we want.
-      // obj.traverse((node) => {
-      //   // console.log(node.name);
-      //   if (node.name.includes("particle")) {
-      //     node.material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-      //   }
-      //   if (node.name === "Plane011") {
-      //     node.material = new THREE.MeshStandardMaterial({ color: 0x777777 });
-      //   }
-      //   if (node.material && node.material?.name?.includes("mat")) {
-      //     // node.material = new THREE.MeshBasicMaterial({
-      //     //   color: 0xffffff,
-      //     //   map: node.material.map,
-      //     // });
-      //     node.material.depthWrite = true;
-      //     node.material.transparent = false;
-      //     node.material.alphaTest = 0.5;
-      //     node.material.alphaWrite = false;
-      //     node.material.flatShading = true;
-      //     // console.log(node.material);
-      //   }
-      // });
-    });
-  },
-});
 
 const animals = [
   "mouse",
@@ -89,7 +57,14 @@ const MindARViewer = () => {
               id="sound_src"
               preload="auto"
               class="a-sound"
-              src="/AR-Workshop/sound.m4a"
+              src="/AR-Workshop/sounds/bgm.mp3"
+              response-type="arraybuffer"
+            ></a-asset-item>
+            <a-asset-item
+              id="sound_src_hohoho"
+              preload="auto"
+              class="a-sound"
+              src="/AR-Workshop/sounds/hohoho.mp3"
               response-type="arraybuffer"
             ></a-asset-item>
             {animals.map((v, i) => (

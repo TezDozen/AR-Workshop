@@ -40,6 +40,8 @@ AFRAME.registerComponent("mindar-image-target-averaging", {
       this.el.emit("targetFound");
     } else if (this.el.object3D.visible && worldMatrix === null) {
       this.el.emit("targetLost");
+      const arSystem = this.el.sceneEl.systems["mindar-image-system"];
+      arSystem.ui.showScanning();
     }
 
     this.el.object3D.visible = worldMatrix !== null;
